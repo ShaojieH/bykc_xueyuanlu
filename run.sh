@@ -1,1 +1,1 @@
-nohup python3.6 run.py &
+nohup python3.6 run.py -u username -p password &

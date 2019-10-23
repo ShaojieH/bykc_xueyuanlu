@@ -1,5 +1,6 @@
 # coding=utf-8
 
+import argparse
 import json
 import time
 
@@ -12,9 +13,12 @@ bykc_query_url = "https://bykc.e.buaa.edu.cn/sscv/querySelectableCourse"
 token_url = "https://sso-443.e.buaa.edu.cn/login?TARGET=https%3A%2F%2Fbykc.e.buaa.edu.cn%2Fsscv%2FcasLogin"
 session = session()
 sleep_s = 10
-username = input('username:')
-password = input('password:')
-auth_token = ""
+parser = argparse.ArgumentParser(description='get bykc list')
+parser.add_argument('-u', '--username', help="username", required=True)
+parser.add_argument('-p', '--password', help="password", required=True)
+username: str
+password: str
+auth_token: str
 
 default_headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -129,6 +133,10 @@ def check_bykc_course():
 
 
 def main():
+    global username, password
+    args = parser.parse_args()
+    username = args.username
+    password = args.password
     while True:
         try:
             login_vpn()
