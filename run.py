@@ -12,8 +12,8 @@ bykc_query_url = "https://bykc.e.buaa.edu.cn/sscv/querySelectableCourse"
 token_url = "https://sso-443.e.buaa.edu.cn/login?TARGET=https%3A%2F%2Fbykc.e.buaa.edu.cn%2Fsscv%2FcasLogin"
 session = session()
 sleep_s = 10
-username = '####'
-password = '####'
+username = input('username:')
+password = input('password:')
 auth_token = ""
 
 default_headers = {
@@ -104,7 +104,7 @@ def check_bykc_course():
         "Accept": "application/json",
         "auth_token": auth_token
     })
-    print("response : {0}".format(response.text))
+    # print("response : {0}".format(response.text))
 
     response_data = json.loads(response.text)
     for course in response_data['data']:
